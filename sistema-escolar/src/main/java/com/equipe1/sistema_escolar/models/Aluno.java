@@ -2,6 +2,7 @@ package com.equipe1.sistema_escolar.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,9 +28,13 @@ public class Aluno {
     private String emailAluno;
 
     @ManyToOne
+    @JoinColumn (name = "professor_id", referencedColumnName = "pk_id_professor", nullable = false)
     private Professor professor;
 
     @ManyToOne
+    @JoinColumn(name = "sala_id", nullable = false)
+    @JsonBackReference
     private Sala sala;
+
 
 }

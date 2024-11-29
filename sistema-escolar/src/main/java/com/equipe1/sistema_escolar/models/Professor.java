@@ -1,8 +1,11 @@
 package com.equipe1.sistema_escolar.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_professor")
@@ -20,5 +23,9 @@ public class Professor {
 
     @Column(name = "email_professor")
     private String emailProfessor;
+
+    @OneToMany(mappedBy = "professor")
+    @JsonIgnore
+    private List<Aluno> alunos;
 
 }

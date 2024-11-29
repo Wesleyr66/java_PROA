@@ -20,4 +20,13 @@ public class Presenca {
     @Column (name = "data_presenca")
     private Date dataPresenca;
 
+    @ManyToOne
+    private Professor professor;
+
+    @ManyToOne
+    private Sala sala;
+
+    @ManyToOne
+    private Aluno aluno;
+
 }
