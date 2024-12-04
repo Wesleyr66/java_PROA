@@ -9,6 +9,7 @@ public class Conta {
     String titular_conta;
     double saldo;
     float emprestimo;
+    float pagar_boleto;
 
     public Conta(String nome_titular, double saldo_inicial){
         this.titular_conta = nome_titular;
@@ -50,7 +51,7 @@ public class Conta {
             Exibir_menu();
             opcao = entrada.nextInt();
             Escolher_funcao(opcao);
-        }while (opcao!=5);
+        }while (opcao!=6);
     }
 
     public void Exibir_menu(){
@@ -60,7 +61,8 @@ public class Conta {
         System.out.println("2 - Sacar");
         System.out.println("3 - Depositar");
         System.out.println("4 - Emprestimo");
-        System.out.println("5 - Finalizar");
+        System.out.println("5 - Pagar boleto");
+        System.out.println("6 - Finalizar");
     }
 
     public void Escolher_funcao(int opcao){
@@ -87,6 +89,11 @@ public class Conta {
                 Emprestimo(emprestimo);
                 break;
             case 5:
+                System.out.println("Qual valor do boleto");
+                pagar_boleto = entrada.nextFloat();
+                Boleto(pagar_boleto);
+                break;
+            case 6:
                 System.out.println("Operação finalizada!");
                 break;
             default:
@@ -101,6 +108,17 @@ public class Conta {
             System.out.println("Seu saldo agora é: "+saldo);
         }else {
             System.out.println("Emprestimo não autorizado");
+        }
+    }
+
+    public void Boleto(float pagar_boleto){
+        if (pagar_boleto>saldo){
+            System.out.println("Saldo insuficiente");
+        }else if (pagar_boleto<0){
+            System.out.println("Boleto invalido");
+        }else {
+            this.saldo -= pagar_boleto;
+            System.out.println("boleto pago, seu saldo é: "+saldo);
         }
     }
 }
